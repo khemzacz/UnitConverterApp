@@ -13,7 +13,7 @@ public class TemperatureConverter extends AbstractConverter{
 
     private double result;
     private double value;
-
+    private String unit;
     public String convert(String val,String a, String b){
         value = Double.parseDouble(val);
         if(a.equals(b))
@@ -38,28 +38,34 @@ public class TemperatureConverter extends AbstractConverter{
         }
         else result= 0;
         Double td = new BigDecimal(result).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
-        return (td.toString());
+        return (td.toString()+ unit);
     }
 
 
     private double CelsiusToFahrenheit(double value){
+        unit = " °F";
         return (value*1.8+32);
     }
-    private double CelsiusToKelwin(double value){
+    private double CelsiusToKelwin(double value) {
+        unit = " K";
         return (value+273.15);
     }
 
-    private double FahrenheitToCelsius(double value){
+    private double FahrenheitToCelsius(double value) {
+        unit = " °C";
         return ((value-32)/1.8);
     }
     private double FahrenheitToKelwin(double value){
+        unit = " K";
         return ((value+459.67)/1.8);
     }
 
     private double KelwinToCelsius(double value){
+        unit = " °C";
         return (value-273.15);
     }
     private double KelwinToFahrenheit(double value){
+        unit = " °F";
         return (value*1.8-459.67);
     }
 }

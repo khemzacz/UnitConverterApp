@@ -17,23 +17,23 @@ public class DistanceConverter extends AbstractConverter {
         value = Double.parseDouble(val);
         if(a.equals(b))
             result= value;
-        else if(a.equals("Kilograms")&& b.equals("Pounds")){
-            result= kilogramsToPounds();
+        else if(a.equals("Kilometers")&& b.equals("Miles")){
+            result= kilometersToMiles();
         }
-        else if(a.equals("Pounds")&& b.equals("Kilograms"))
-            result = poundsToKilograms();
+        else if(a.equals("Miles")&& b.equals("Kilometers"))
+            result = milesToKilometers();
         else result= 0;
         Double td = new BigDecimal(result).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
         return (td.toString()+unit);
     }
 
-    private double kilogramsToPounds(){
-        unit = " lb";
-        return (value*2.2046);
+    private double kilometersToMiles(){
+        unit = " mi";
+        return (value/1.609344);
     }
-    private double poundsToKilograms(){
-        unit = " kg";
-        return (value/2.2046);
+    private double milesToKilometers(){
+        unit = " km";
+        return (value*1.609344);
     }
 
 }
